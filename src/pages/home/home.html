@@ -1,14 +1,21 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            Expanse Tracker
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <ion-list>
+
+        <button *ngFor="let expense of expenses" ion-item (click)="showDetails(expense)">
+                <h2>{{(expense.amount || 0) | currency:'ILS':true}}</h2>
+                <p> {{(expense.date || '') | date}} <em><strong>{{expense.description}}</strong></em></p>
+                <ion-note item-right>{{expense.category}}</ion-note>
+        </button>
+    </ion-list>
+    <ion-fab right bottom>
+        <button (click)="newExpense()" ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
 </ion-content>
